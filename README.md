@@ -44,6 +44,8 @@ Installing DirectSlave including DirectSlave 3.2 with XSS patch
 <br>SSHD port updating
 <br>Install check
 
+echo "action=rewrite&value=named" >> /usr/local/directadmin/data/task.queue
+
 # References #
 Original script by jordivn at https://forum.directadmin.com/showthread.php?t=43924&page=22&p=278112#post278112
 <br>DirectSlave software from https://directslave.com/download
