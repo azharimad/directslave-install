@@ -24,7 +24,7 @@ On the server DirectSlave
 
 allow-query     { any; };
 <br>              allow-notify    { DirectAdmin_IP_server; };
-<br>              allow-transfer  { DirectAdmin_IP_server; };
+<br>              allow-transfer  { none; };
 <br>
 <br>
 
@@ -34,8 +34,7 @@ On the server DirectAdmin
 <br>    listen-on-v6 port 53 { none; };
 
 allow-query     { any; };
-<br>              allow-notify    { DirectSlave_IP_server_1, DirectSlave_IP_server_2; };
-<br>              allow-transfer  { DirectSlave_IP_server_1, DirectSlave_IP_server_2; };
+
 
 # What's New? #
 Installing DirectSlave including DirectSlave 3.2 with XSS patch
