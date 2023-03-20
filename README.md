@@ -36,7 +36,7 @@ On the server DirectAdmin
 <br>allow-query     { any; };
 
 On the server DirectAdmin alternative:
-options {
+<br>options {
 <br>        allow-transfer { any; };
 <br>        //listen-on port 53 { any; };
 <br>        //listen-on-v6 port 53 { none; };
