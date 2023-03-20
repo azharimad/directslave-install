@@ -31,9 +31,9 @@ allow-query     { any; };
 On the server DirectAdmin
 <br>options {
 <br>	listen-on port 53 { any; };
-<br>    listen-on-v6 port 53 { none; };
-allow-transfer { any; };
-allow-query     { any; };
+<br>  listen-on-v6 port 53 { none; };
+<br>allow-transfer { any; };
+<br>allow-query     { any; };
 
 
 # What's New? #
