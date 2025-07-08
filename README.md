@@ -5,6 +5,45 @@ I have taken it and modified it to work with DirectSlave GO Advanced version dor
 
 If you have another OS you will need a bit to modify the script.
 
+# directslave-docker-instal
+#### Start
+
+```bash
+docker-compose up -d
+```
+
+#### Stop
+
+```bash
+docker-compose stop
+```
+
+#### Clean
+
+```bash
+docker-compose down
+```
+
+#### View Logs
+
+```bash
+docker-compose logs -f
+```
+
+#### Upgrade
+
+```bash
+docker-compose down
+docker-compose pull
+docker-compose up -d
+```
+
+#### Build from source
+
+```
+docker-compose -f docker-compose.yml -f docker-compose.build.yml build --no-cache
+```
+
 # Aims
 Running DirectSlave as secondary DNS Cluster for DirectAdmin control panel
 <br>Maintain updated documentation / tutorials on how to install & configure DirectSlave GO Advanced
