@@ -1,0 +1,47 @@
+volumes:
+  data:
+    driver: local
+  directslave:
+    driver: local
+
+services:
+  directslave:
+    restart: unless-stopped
+    image: powerkernel/directslave
+    container_name: directslave
+    labels:
+      sh.acme.autoload.domain: secondary.domain.com
+    environment:
+      - USER=someuser
+      - PASSWD=verySecurePassword
+    ports:
+      - target: 2222
+        published: 2222
+        protocol: tcp
+      - target: 53
+        published: 53
+        protocol: tcp
+      - target: 53
+        published: 53
+        protocol: udp
+    volumes:
+      - directslave:/usr/local/directslave
+      - data:/var/lib/bind/slave
+  acme.sh:
+    image: neilpang/acme.sh
+    container_name: acme.sh
+    command: daemon
+    restart: unless-stopped
+    volumes:
+      - ./acmeout:/acme.sh
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - CF_Token=xxxx
+      - CF_Account_ID=yyyy
+      - CF_Zone_ID=zzzz
+      - DEPLOY_DOCKER_CONTAINER_LABEL=sh.acme.autoload.domain=secondary.domain.com
+      - DEPLOY_DOCKER_CONTAINER_KEY_FILE="/usr/local/directslave/ssl/key.pem"
+      - DEPLOY_DOCKER_CONTAINER_CERT_FILE="/usr/local/directslave/ssl/cert.pem"
+      - DEPLOY_DOCKER_CONTAINER_CA_FILE="/usr/local/directslave/ssl/ca.pem"
+      - DEPLOY_DOCKER_CONTAINER_FULLCHAIN_FILE="/usr/local/directslave/ssl/fullchain.pem"
+      - DEPLOY_DOCKER_CONTAINER_RELOAD_CMD="chown -R bind:bind /usr/local/directslave && /usr/bin/supervisorctl restart directslave"
